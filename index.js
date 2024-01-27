@@ -1,14 +1,17 @@
-function encode(cipher, shift) {
+function shiftString(str, shift) {
     const codes = [];
-    for (let i = 0; i < cipher.length; i++) {
-        const charCode = cipher.charCodeAt(i);
+    for (let i = 0; i < str.length; i++) {
+        const charCode = str.charCodeAt(i);
         codes[i] = String.fromCharCode(charCode + shift);
     }
     const encodedCipher = codes.join("");
     return encodedCipher;
 }
+function encode(cipher, shift) {
+    return shiftString(cipher, shift);
+}
 function decode(cipher, shift) {
-    return cipher[shift]; // TODO
+    return shiftString(cipher, -shift);
 }
 function onClickEncode(e, $cipher, $shift, $encode) {
     $cipher.value = encode($cipher.value, Number($shift.value));

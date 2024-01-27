@@ -1,8 +1,8 @@
-function encode(cipher: string, shift: number): string {
+function shiftString(str: string, shift: number) {
     const codes: string[] = [];
 
-    for (let i = 0; i < cipher.length; i++) {
-        const charCode: number = cipher.charCodeAt(i);
+    for (let i = 0; i < str.length; i++) {
+        const charCode: number = str.charCodeAt(i);
         codes[i] = String.fromCharCode(charCode + shift);
     }
 
@@ -11,8 +11,12 @@ function encode(cipher: string, shift: number): string {
     return encodedCipher;
 }
 
+function encode(cipher: string, shift: number): string {
+    return shiftString(cipher, shift);
+}
+
 function decode(cipher: string, shift: number): string {
-    return cipher[shift]; // TODO
+    return shiftString(cipher, -shift);
 }
 
 function onClickEncode(e: Event, $cipher: HTMLInputElement, $shift: HTMLInputElement, $encode: string): void {
